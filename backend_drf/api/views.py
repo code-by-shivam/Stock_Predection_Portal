@@ -37,6 +37,12 @@ class StockPredictionViewAPIView(APIView):
                 return Response({'error':'No data found for the given ticker',
                 'status': status.HTTP_404_NOT_FOUND 
                 })
+            
+            if len(df) <= 100:
+                return Response({'error': f'Insufficient data for {ticker}. At least 100 days of history are required for prediction.',
+                'status': status.HTTP_400_BAD_REQUEST 
+                })
+            
             df=df.reset_index() 
             #Generating Basic Plot
             plt.switch_backend('AGG')
@@ -111,8 +117,8 @@ class StockPredictionViewAPIView(APIView):
             y_predicted = model.predict(x_test)
 
             #Revert the scaling price to original price
-            y_predicted = scaler.inverse_transform(y_predicted)
-            y_test = scaler.inverse_transform(y_test.reshape(-1,1))
+            y_predicted = scaler.inverse_transform(y_predicted.reshape(-1,1)).flatten()
+            y_test = scaler.inverse_transform(y_test.reshape(-1,1)).flatten()
 
             
             #plot the final predection

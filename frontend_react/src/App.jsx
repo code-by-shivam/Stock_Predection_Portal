@@ -1,30 +1,34 @@
-import React from 'react'
-import Header from './components/Header'
-import Main from './components/Main'
-import Footer from './components/Footer'
+import { useState } from 'react'
 import './assets/css/style.css'
-import { AuthProvider } from './AuthProvider'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import Main from './components/Main'
 import Register from './components/Register'
+import { BrowserRouter, Routes, Route } from "react-router-dom"
+import Header from './components/Header'
+import Footer from './components/Footer'
 import Login from './components/Login'
-import DashBoard from './components/dashboard/DashBoard'
+import AuthProvider from './AuthProvider'
+
 import PrivateRoute from './PrivateRoute'
 import PublicRoute from './PublicRoute'
-const App = () => {
+import Dashboard from './components/dashboard/DashBoard'
+
+function App() {
+
   return (
     <>
       <AuthProvider>
-        <BrowserRouter>
+        <BrowserRouter >
           <Header />
           <Routes>
-            <Route path="/" element={<Main />} />
+            <Route path='/' element={<Main />} />
             <Route path='/register' element={<PublicRoute><Register /></PublicRoute>} />
             <Route path='/login' element={<PublicRoute><Login /></PublicRoute>} />
-            <Route path='/dashboard' element={<PrivateRoute><DashBoard /></PrivateRoute>} />
+            <Route path='/dashboard' element={<PrivateRoute><Dashboard /></PrivateRoute>} />
           </Routes>
           <Footer />
         </BrowserRouter>
       </AuthProvider>
+
     </>
   )
 }
