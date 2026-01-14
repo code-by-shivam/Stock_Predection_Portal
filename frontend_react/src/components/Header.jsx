@@ -38,7 +38,7 @@ const Header = () => {
                 </div>
 
             </nav>
-            <hr className="navbar-divider" />
+
 
         </>
     )
