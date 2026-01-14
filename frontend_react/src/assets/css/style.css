@@ -45,3 +45,12 @@ body {
 .graph-container img:hover {
     transform: scale(1.02);
 }
+
+.navbar-divider {
+    border: 0;
+    height: 1px;
+    background: linear-gradient(to right, transparent, #0dcaf0, transparent);
+    box-shadow: 0 0 10px rgba(13, 202, 240, 0.5);
+    margin: 0;
+    opacity: 0.7;
+}
