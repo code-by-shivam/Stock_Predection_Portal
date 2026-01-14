@@ -46,7 +46,7 @@ class StockPredictionViewAPIView(APIView):
             df=df.reset_index() 
             #Generating Basic Plot
             plt.switch_backend('AGG')
-            plt.figure(figsize=(12,5))
+            plt.figure(figsize=(15,7))
             plt.plot(df.Close, label='Close Price')
             plt.title(f"Close Price of {ticker}")
             plt.xlabel("Days")
@@ -62,7 +62,7 @@ class StockPredictionViewAPIView(APIView):
             #100 Days moving average
             ma100 = df.Close.rolling(100).mean()
             plt.switch_backend("AGG")
-            plt.figure(figsize=(12,5))
+            plt.figure(figsize=(15,7))
             plt.plot(df.Close, label='Close Price')
             plt.plot(ma100,'r', label='100 MA')
             plt.title(f"100 Days Moving Average of {ticker}")
@@ -77,7 +77,7 @@ class StockPredictionViewAPIView(APIView):
             #200 Days moving average
             ma200 = df.Close.rolling(200).mean()
             plt.switch_backend("AGG")
-            plt.figure(figsize=(12,5))
+            plt.figure(figsize=(15,7))
             plt.plot(df.Close, label='Close Price')
             plt.plot(ma100,'r', label='100 MA')
             plt.plot(ma200,'g', label='200 MA')
@@ -123,7 +123,7 @@ class StockPredictionViewAPIView(APIView):
             
             #plot the final predection
             plt.switch_backend("AGG")
-            plt.figure(figsize=(12,5))
+            plt.figure(figsize=(15,7))
             plt.plot(y_test,'b', label='Original Price')
             plt.plot(y_predicted,'r', label='Predicted Price')
             plt.title(f"Final Prediction of {ticker}")
